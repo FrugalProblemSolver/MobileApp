@@ -1,17 +1,19 @@
 package com.example.menus
 
+
+import android.content.Intent
 import android.os.Bundle
-import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.PopupMenu
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.menus.TeamMembersActivity
+import com.example.menus.AboutUsActivity
+import com.example.menus.ProjectDescriptionActivity
+import com.example.menus.R
+import com.example.menus.TeamDetailsActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,68 +21,50 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btnContext = findViewById<Button>(R.id.btn_context)
-        val btnPopup = findViewById<Button>(R.id.btn_popup)
 
-        // 1. REGISTER for Context Menu (Triggered by long-press)
-        registerForContextMenu(btnContext)
-        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.my_toolbar)
-
-        // 2. Set it as the Support Action Bar
-        // This tells Android: "Use this toolbar for my Options Menu"
-        setSupportActionBar(toolbar)
-        // 2. TRIGGER for Popup Menu (Triggered by standard click)
-        btnPopup.setOnClickListener { view ->
-            showPopupMenu(view)
+        val popupBtn = findViewById<Button>(R.id.popupBtn)
+        popupBtn.setOnClickListener {
+            showPopupMenu(it)
         }
     }
 
-    // --- OPTIONS MENU (Top Right App Bar) ---
+    // OPTIONS MENU
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.navigation_menu, menu)
+        menuInflater.inflate(R.menu.options_menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_logout -> {
-                showToast("logout Selected")
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.about -> startActivity(Intent(this, AboutUsActivity::class.java))
+            R.id.teamDetails -> startActivity(Intent(this, TeamDetailsActivity::class.java))
+            R.id.teamMembers -> startActivity(Intent(this, TeamMembersActivity::class.java))
+            R.id.projectDesc -> startActivity(Intent(this, ProjectDescriptionActivity::class.java))
         }
+        return true
     }
 
-    // --- CONTEXT MENU (Floating menu on long-press) ---
-    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
-        super.onCreateContextMenu(menu, v, menuInfo)
-        menuInflater.inflate(R.menu.navigation_menu, menu)
-        menu?.setHeaderTitle("Context Action")
-    }
-
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_aboutUs -> {
-                showToast("aboutUs Selected")
-                true
-            }
-            else -> super.onContextItemSelected(item)
-        }
-    }
-
-    // --- POPUP MENU (Anchored to a specific View) ---
+    // POPUP MENU
     private fun showPopupMenu(view: View) {
         val popup = PopupMenu(this, view)
-        popup.menuInflater.inflate(R.menu.navigation_menu, popup.menu)
-
+        popup.menuInflater.inflate(R.menu.popup_menu, popup.menu)
         popup.setOnMenuItemClickListener { item ->
-            showToast("Clicked: ${item.title}")
+            when (item.itemId) {
+                R.id.about ->
+                    startActivity(Intent(this, AboutUsActivity::class.java))
+
+                R.id.teamDetails ->
+                    startActivity(Intent(this, TeamDetailsActivity::class.java))
+
+                R.id.teamMembers ->
+                    startActivity(Intent(this, TeamMembersActivity::class.java))
+
+                R.id.projectDesc ->
+                    startActivity(Intent(this, ProjectDescriptionActivity::class.java))
+            }
             true
         }
-        popup.show()
-    }
 
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        popup.show()
     }
 }

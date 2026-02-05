@@ -13,6 +13,22 @@
         android:theme="@style/Theme.Menus"
         tools:targetApi="31">
         <activity
+            android:name="com.example.menus.ProjectDescriptionActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.menus.MemberDescriptionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TeamMembersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TeamDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AboutUsActivity"
+
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
