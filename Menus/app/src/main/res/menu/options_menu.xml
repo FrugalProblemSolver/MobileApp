@@ -3,4 +3,5 @@
     <item android:id="@+id/teamDetails" android:title="Team Details"/>
     <item android:id="@+id/teamMembers" android:title="Team Members"/>
     <item android:id="@+id/projectDesc" android:title="Project Description"/>
+    <item android:id="@+id/birthdays" android:title="Birthdays"/>
 </menu>

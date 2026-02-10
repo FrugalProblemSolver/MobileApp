@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permissions for notifications and background work -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -17,6 +22,9 @@
             android:exported="false" />
         <activity
             android:name="com.example.menus.MemberDescriptionActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.menus.BirthdayActivity"
             android:exported="false" />
         <activity
             android:name=".TeamMembersActivity"

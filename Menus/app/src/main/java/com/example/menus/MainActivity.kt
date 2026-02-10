@@ -8,12 +8,20 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.PopupMenu
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.menus.TeamMembersActivity
 import com.example.menus.AboutUsActivity
+import com.example.menus.BirthdayActivity
 import com.example.menus.ProjectDescriptionActivity
 import com.example.menus.R
 import com.example.menus.TeamDetailsActivity
+import com.example.menus.workers.StatusNotificationWorker
+import com.example.menus.utils.NotificationHelper
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,11 +29,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Initialize notification channels
+        NotificationHelper.createNotificationChannels(this)
+
+        // Schedule hourly status notifications
+        scheduleHourlyNotifications()
 
         val popupBtn = findViewById<Button>(R.id.popupBtn)
         popupBtn.setOnClickListener {
             showPopupMenu(it)
         }
+    }
+
+    private fun scheduleHourlyNotifications() {
+        val statusWorkRequest = PeriodicWorkRequestBuilder<StatusNotificationWorker>(
+            1, TimeUnit.HOURS
+        ).build()
+
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
+            "hourly_status",
+            ExistingPeriodicWorkPolicy.KEEP,
+            statusWorkRequest
+        )
     }
 
     // OPTIONS MENU
@@ -40,6 +65,7 @@ class MainActivity : AppCompatActivity() {
             R.id.teamDetails -> startActivity(Intent(this, TeamDetailsActivity::class.java))
             R.id.teamMembers -> startActivity(Intent(this, TeamMembersActivity::class.java))
             R.id.projectDesc -> startActivity(Intent(this, ProjectDescriptionActivity::class.java))
+            R.id.birthdays -> startActivity(Intent(this, BirthdayActivity::class.java))
         }
         return true
     }
@@ -61,10 +87,32 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.projectDesc ->
                     startActivity(Intent(this, ProjectDescriptionActivity::class.java))
+
+                R.id.birthdays ->
+                    startActivity(Intent(this, BirthdayActivity::class.java))
             }
             true
         }
 
         popup.show()
     }
+
+    // EXIT ALERT DIALOG
+    override fun onBackPressed() {
+        super.onBackPressed()
+        AlertDialog.Builder(this)
+            .setTitle("Exit Application")
+            .setMessage("Are you sure you want to exit the HumbleHackers app?")
+            .setPositiveButton("Yes") { _, _ ->
+                // Cancel all background notifications
+                WorkManager.getInstance(this).cancelAllWork()
+                // Close the app
+                finish()
+            }
+            .setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
 }
+
