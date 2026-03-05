@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <!-- Toolbar -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/purple_700">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/ic_back"
+            android:scaleType="centerInside"
+            android:contentDescription="@string/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="🔐 Personal Details"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Info Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="@color/blue_light">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="💾 Firebase Integration"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/purple_700" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Your personal details are stored in Firebase Firestore. Edit below and click Save to sync."
+                        android:textSize="12sp"
+                        android:textColor="@color/purple_700"
+                        android:layout_marginTop="8dp"
+                        android:lineSpacingExtra="2dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Status -->
+            <TextView
+                android:id="@+id/statusText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="⏳ Loading..."
+                android:textSize="12sp"
+                android:textColor="@color/purple_700"
+                android:gravity="center"
+                android:layout_marginBottom="16dp"
+                android:padding="8dp"
+                android:background="@color/purple_100" />
+
+            <!-- Name -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Full Name"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/purple_700" />
+
+            <EditText
+                android:id="@+id/nameEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your full name"
+                android:inputType="text"
+                android:layout_marginBottom="16dp"
+                android:padding="12dp"
+                android:background="@drawable/edit_text_background" />
+
+            <!-- Email -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/purple_700" />
+
+            <EditText
+                android:id="@+id/emailEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your email"
+                android:inputType="textEmailAddress"
+                android:layout_marginBottom="16dp"
+                android:padding="12dp"
+                android:background="@drawable/edit_text_background" />
+
+            <!-- Phone -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/purple_700" />
+
+            <EditText
+                android:id="@+id/phoneEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your phone number"
+                android:inputType="phone"
+                android:layout_marginBottom="16dp"
+                android:padding="12dp"
+                android:background="@drawable/edit_text_background" />
+
+            <!-- Profession -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Profession"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/purple_700" />
+
+            <EditText
+                android:id="@+id/professionEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your profession"
+                android:inputType="text"
+                android:layout_marginBottom="16dp"
+                android:padding="12dp"
+                android:background="@drawable/edit_text_background" />
+
+            <!-- City -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="City"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/purple_700" />
+
+            <EditText
+                android:id="@+id/cityEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your city"
+                android:inputType="text"
+                android:layout_marginBottom="16dp"
+                android:padding="12dp"
+                android:background="@drawable/edit_text_background" />
+
+            <!-- Bio -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bio"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/purple_700" />
+
+            <EditText
+                android:id="@+id/bioEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your bio"
+                android:inputType="textMultiLine"
+                android:lines="4"
+                android:layout_marginBottom="16dp"
+                android:padding="12dp"
+                android:background="@drawable/edit_text_background" />
+
+            <!-- Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:spacing="8dp">
+
+                <Button
+                    android:id="@+id/saveBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="💾 Save to Firebase"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/loadBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="📥 Load from Firebase"
+                    android:layout_marginStart="8dp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

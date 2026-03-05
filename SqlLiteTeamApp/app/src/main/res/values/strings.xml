@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HumbleHackers Team App</string>
+    <string name="back">Back</string>
+    <string name="view_details">View Details</string>
+</resources>

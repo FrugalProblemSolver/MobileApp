@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "79855650350",
+    "project_id": "sqllitemobileapp",
+    "storage_bucket": "sqllitemobileapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79855650350:android:1e7854dcecade881ed81bf",
+        "android_client_info": {
+          "package_name": "com.example.sqlliteteamapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCK-L_G4PvPEAjdsHY4EVfpUdkrguq1wEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
